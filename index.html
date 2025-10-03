@@ -1,125 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samantha's Personal Portfolio</title>
-  <style>
-    /* Reset & base */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-    body { background: #fdf6f0; color: #333; scroll-behavior: smooth; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Navbar */
-    nav {
-      width: 100%;
-      background: #fff;
-      padding: 15px 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav ul { list-style: none; display: flex; gap: 20px; }
-    nav ul li a:hover { color: #ff6f61; }
-
-    /* Hero section */
-    header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: url('images/4AFDF179-164A-45F3-A9FC-0101C4F2027B.jpeg') center/cover no-repeat;
-      color: #fff;
-    }
-    header h1 { font-size: 3em; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
-    header p { font-size: 1.2em; margin-bottom: 20px; text-shadow: 1px 1px 6px rgba(0,0,0,0.5); }
-    header a { background: #ff6f61; padding: 10px 20px; border-radius: 5px; color: #fff; transition: 0.3s; }
-    header a:hover { background: #ff4b3a; }
-
-    /* Sections */
-    section { padding: 80px 20px; max-width: 1200px; margin: auto; }
-    h2 { font-size: 2em; margin-bottom: 20px; text-align: center; color: #ff6f61; }
-    p { text-align: center; margin-bottom: 40px; }
-
-    /* Portfolio grid */
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .portfolio-grid img { width: 100%; border-radius: 10px; transition: transform 0.3s; }
-    .portfolio-grid img:hover { transform: scale(1.05); }
-
-    /* About me */
-    .about { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
-    .about img { width: 200px; border-radius: 50%; }
-
-    /* Contact form */
-    .contact form { max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 15px; }
-    .contact input, .contact textarea { padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; }
-    .contact button { background: #ff6f61; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
-    .contact button:hover { background: #ff4b3a; }
-
-    /* Footer */
-    footer { text-align: center; padding: 20px; background: #fff; border-top: 1px solid #eee; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samantha | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<style>
+:root {
+--bg-color: #000;
+--primary-color: #ff007f;
+--text-color: #fff;
+--secondary-color: #121212;
+--hover-color: #ff3399;
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Poppins", sans-serif;
+}
+body {
+background: var(--bg-color);
+color: var(--text-color);
+line-height: 1.6;
+scroll-behavior: smooth;
+}
+header {
+background: var(--secondary-color);
+position: fixed;
+width: 100%;
+top: 0;
+left: 0;
+z-index: 1000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 2rem;
+}
+header h1 {
+color: var(--primary-color);
+font-size: 1.5rem;
+}
+nav ul {
+display: flex;
+list-style: none;
+}
+nav ul li {
+margin-left: 20px;
+}
+nav ul li a {
+color: var(--text-color);
+text-decoration: none;
+font-weight: 500;
+transition: color 0.3s;
+}
+nav ul li a:hover {
+color: var(--primary-color);
+}
+section {
+padding: 100px 20px;
+min-height: 100vh;
+}
+.hero {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+background: linear-gradient(135deg, #000, #1a001a);
+}
+.hero h2 {
+font-size: 2.5rem;
+}
+.hero h2 span {
+color: var(--primary-color);
+}
+.hero p {
+margin: 20px 0;
+font-size: 1.2rem;
+}
+.hero .btn {
+display: inline-block;
+padding: 10px 20px;
+margin: 10px;
+border: 2px solid var(--primary-color);
+color: var(--primary-color);
+text-decoration: none;
+transition: 0.3s;
+border-radius: 25px;
+}
+.hero .btn:hover {
+background: var(--primary-color);
+color: #000;
+}
+.section h2 {
+text-align: center;
+margin-bottom: 40px;
+font-size: 2rem;
+color: var(--primary-color);
+}
+.skills, .projects, .timeline, .gallery, .contact {
+max-width: 1000px;
+margin: auto;
+}
+.skill {
+margin-bottom: 20px;
+}
+.skill .skill-name {
+margin-bottom: 5px;
+}
+.progress {
+background: #222;
+border-radius: 10px;
+overflow: hidden;
+height: 10px;
+}
+.progress-bar {
+height: 10px;
+background: var(--primary-color);
+width: 0;
+}
+.projects .project {
+background: #111;
+padding: 20px;
+border-radius: 10px;
+margin-bottom: 20px;
+transition: transform 0.3s;
+}
+.projects .project:hover {
+transform: translateY(-5px);
+}
+.timeline {
+position: relative;
+padding-left: 30px;
+}
+.timeline::before {
+content: "";
+position: absolute;
+left: 15px;
+top: 0;
+bottom: 0;
+width: 2px;
+background: var(--primary-color);
+}
+.timeline-item {
+margin-bottom: 40px;
+position: relative;
+}
+.timeline-item::before {
+content: "";
+position: absolute;
+left: -5px;
+top: 0;
+width: 15px;
+height: 15px;
+background: var(--primary-color);
+border-radius: 50%;
+}
+.gallery {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 15px;
+}
+.gallery img {
+width: 100%;
+border-radius: 10px;
+transition: transform 0.3s;
+}
+.gallery img:hover {
+transform: scale(1.05);
+}
+.contact form {
+display: flex;
+flex-direction: column;
+}
+.contact input, .contact textarea {
+padding: 10px;
+margin: 10px 0;
+border: none;
+border-radius: 5px;
+background: #222;
+color: var(--text-color);
+}
+.contact button {
+background: var(--primary-color);
+color: #000;
+padding: 10px;
+border: none;
+border-radius: 25px;
+cursor: pointer;
+transition: 0.3s;
+}
+.contact button:hover {
+background: var(--hover-color);
+}
+footer {
+text-align: center;
+padding: 20px;
+background: var(--secondary-color);
+color: #aaa;
+}
+#backToTop {
+display: none;
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: var(--primary-color);
+color: #000;
+border: none;
+padding: 10px 15px;
+border-radius: 50%;
+cursor: pointer;
+z-index: 1000;
+}
+</style>
 </head>
 <body>
+<header>
+<h1>Samantha</h1>
+<nav>
+<ul>
+<li><a href="#hero">Home</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#timeline">Timeline</a></li>
+<li><a href="#photography">Photography</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
 
-  <!-- Navbar -->
-  <nav>
-    <div><strong>Samantha</strong></div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<section id="hero" class="hero">
+<h2>Hi, I'm <span>Samantha</span></h2>
+<p><span id="typing"></span></p>
+<a href="#projects" class="btn">View My Work</a>
+<a href="#" onclick="downloadCV()" class="btn">Download CV</a>
+</section>
 
-  <!-- Hero -->
-  <header>
-    <h1>Hello, I'm Samantha</h1>
-    <p>Welcome to my personal portfolio</p>
-    <a href="#portfolio">View My Work</a>
-  </header>
+<section id="skills" class="section">
+<h2>Skills</h2>
+<div class="skills">
+<div class="skill">
+<div class="skill-name">HTML</div>
+<div class="progress"><div class="progress-bar" data-skill="90"></div></div>
+</div>
+<div class="skill">
+<div class="skill-name">CSS</div>
+<div class="progress"><div class="progress-bar" data-skill="85"></div></div>
+</div>
+<div class="skill">
+<div class="skill-name">JavaScript</div>
+<div class="progress"><div class="progress-bar" data-skill="80"></div></div>
+</div>
+</div>
+</section>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>About Me</h2>
-    <img src="images/4AFDF179-164A-45F3-A9FC-0101C4F2027B.jpeg" alt="Samantha Profile Picture">
-    <p>Hi! I'm a passionate CSE student and aspiring web developer. I love creating smooth, modern, and eye-catching digital experiences.</p>
-  </section>
+<section id="projects" class="section">
+<h2>Projects</h2>
+<div class="projects">
+<div class="project">
+<h3>Portfolio Website</h3>
+<p>A responsive personal portfolio with animations.</p>
+</div>
+<div class="project">
+<h3>Photography Gallery</h3>
+<p>Interactive photo gallery with lightbox effect.</p>
+</div>
+</div>
+</section>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
-    <p>Here are some of my recent works</p>
-    <div class="portfolio-grid">
-      <img src="images/797FFADC-F144-4A30-991A-6E3E09994C5F.jpeg" alt="Portfolio Image 1">
-      <img src="images/EBC09D62-2381-4A96-BD04-D124BACA5897.jpeg" alt="Portfolio Image 2">
-    </div>
-  </section>
+<section id="timeline" class="section">
+<h2>Timeline</h2>
+<div class="timeline">
+<div class="timeline-item">
+<h3>2022 - Present</h3>
+<p>Frontend Developer at XYZ</p>
+</div>
+<div class="timeline-item">
+<h3>2020 - 2022</h3>
+<p>Internship at ABC Company</p>
+</div>
+</div>
+</section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact Me</h2>
-    <p>Want to work together or just say hi? Drop me a message!</p>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+<!-- Updated Photography Section with your 3 images -->
+<section id="photography" class="section">
+<h2>Photography</h2>
+<div class="gallery">
+<a href="F21A7B7C-73C0-4C3D-B6E1-38C42C03872D.jpeg" data-lightbox="photography" data-title="Portrait">
+<img src="F21A7B7C-73C0-4C3D-B6E1-38C42C03872D.jpeg" alt="Portrait Photography">
+</a>
+<a href="548F192B-683B-4822-A299-4284C12301E3.jpeg" data-lightbox="photography" data-title="Boat at Dusk">
+<img src="548F192B-683B-4822-A299-4284C12301E3.jpeg" alt="Boat at Dusk">
+</a>
+<a href="8394C713-A92E-44D3-8D17-FB273B4589C2.jpeg" data-lightbox="photography" data-title="Night Architecture">
+<img src="8394C713-A92E-44D3-8D17-FB273B4589C2.jpeg" alt="Night Architecture">
+</a>
+</div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Samantha. All rights reserved.
-  </footer>
+<section id="contact" class="section contact">
+<h2>Contact</h2>
+<form>
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Message" required></textarea>
+<button type="submit">Send</button>
+</form>
+</section>
 
+<footer>
+<p>&copy; 2025 Samantha. All Rights Reserved.</p>
+</footer>
+
+<button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script>
+// Typing effect
+const words = ["Frontend Developer", "Designer", "Photographer"];
+let i = 0, j = 0, currentWord = "", isDeleting = false;
+function type() {
+currentWord = words[i];
+document.getElementById("typing").textContent =
+isDeleting ? currentWord.substring(0, j--) : currentWord.substring(0, j++);
+if (!isDeleting && j === currentWord.length) {
+isDeleting = true;
+setTimeout(type, 1500);
+} else if (isDeleting && j === 0) {
+isDeleting = false;
+i = (i + 1) % words.length;
+setTimeout(type, 500);
+} else {
+setTimeout(type, isDeleting ? 50 : 100);
+}
+}
+type();
+
+// Skill bars animation
+const progressBars = document.querySelectorAll(".progress-bar");
+window.addEventListener("scroll", () => {
+progressBars.forEach(bar => {
+const value = bar.getAttribute("data-skill");
+const pos = bar.getBoundingClientRect().top;
+const screenHeight = window.innerHeight;
+if (pos < screenHeight) {
+bar.style.width = value + "%";
+}
+});
+});
+
+// Back to top
+const backToTop = document.getElementById("backToTop");
+window.addEventListener("scroll", () => {
+if (window.scrollY > 300) {
+backToTop.style.display = "block";
+} else {
+backToTop.style.display = "none";
+}
+});
+backToTop.addEventListener("click", () => {
+window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// CV Download
+function downloadCV() {
+window.open("Samantha_CV.pdf", "_blank");
+}
+</script>
 </body>
 </html>
-
